@@ -14,9 +14,10 @@ app.use(express.static(__dirname));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "signin.html"));
 });
-// API ĐĂNG NHẬP
+
+// API ĐĂNG NHẬP (username + password)
 app.post("/login", (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
 
   let users = [];
   if (fs.existsSync("users.json")) {
@@ -24,54 +25,36 @@ app.post("/login", (req, res) => {
   }
 
   const found = users.find(
-    (user) =>
-      ((user.username === username) || (user.email === email) || (user.email === username)) 
-      && user.password === password
+    (user) => user.username === username && user.password === password
   );
 
   if (found) {
-    res.json({ success: true });
+    res.json({ success: true, message: "Đăng nhập thành công!" });
   } else {
     res.json({ success: false, message: "Sai tài khoản hoặc mật khẩu!" });
   }
 });
 
-// API quên mật khẩu
+// API đăng nhập bằng email + password (thay cho quên mật khẩu)
 app.post("/forgot-password", (req, res) => {
-  const { email, newPassword } = req.body;
+  const { email, password } = req.body;
 
   if (!fs.existsSync("users.json")) {
     return res.json({ success: false, message: "Chưa có dữ liệu người dùng" });
   }
 
   let users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
-  let user = users.find(u => u.email === email);
+  let user = users.find((u) => u.email === email && u.password === password);
 
   if (!user) {
-    return res.json({ success: false, message: "Email không tồn tại!" });
+    return res.json({ success: false, message: "Sai email hoặc mật khẩu!" });
   }
 
-  // cập nhật mật khẩu mới
-  user.password = newPassword;
-  fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
-
-  res.json({ success: true, message: "Đổi mật khẩu thành công!" });
-});
-
-// API xem danh sách user (chỉ test, nên xoá khi deploy)
-app.get("/users", (req, res) => {
-  if (fs.existsSync("users.json")) {
-    const users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
-    res.json(users);
-  } else {
-    res.json([]);
-  }
+  // Nếu đúng email + mật khẩu => coi như đăng nhập thành công
+  res.json({ success: true, message: "Đăng nhập thành công!", user });
 });
 
 // Start server
 app.listen(PORT, () => {
   console.log(`✅ Server chạy tại http://localhost:${PORT}`);
-console.log("Body nhận được:", req.body);
-console.log("Danh sách users:", users);
-
 });
