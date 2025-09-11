@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng nhập Quản lý Đồ Dùng Cầu Thủ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d1a3b 0%, #21c1d6 70%, #3ba55b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* 3D ball shadow effect */
+    .ball-3d {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.2rem;
+      position: relative;
+      filter: drop-shadow(0 8px 20px rgba(34,34,34,0.30));
+      animation: bounce 2s infinite cubic-bezier(.42,0,.58,1);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-16px);}
+    }
+    /* Brand logos */
+    .brands {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 1.1rem;
+    }
+    .brands img {
+      width: 36px;
+      height: 36px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.13));
+      opacity: 0.87;
+      background: #fff;
+      border-radius: 8px;
+      padding: 4px;
+      transition: transform 0.16s;
+    }
+    .brands img:hover {
+      transform: scale(1.15);
+      opacity: 1;
+      background: #21c1d6;
+    }
+    .login-3d-box {
+      background: rgba(255,255,255,0.09);
+      border-radius: 24px;
+      box-shadow: 0 12px 48px 0 rgba(34,34,34,0.21), 0 0 0 8px rgba(33,193,214,0.08);
+      padding: 2.5rem 2.2rem 2rem 2.2rem;
+      width: 380px;
+      text-align: center;
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(33,193,214,0.16);
+      position: relative;
+    }
+    .login-3d-box::before {
+      content: '';
+      position: absolute;
+      top: -38px; left: 30px;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle at 40% 40%, #21c1d6 0%, transparent 70%);
+      opacity: 0.23;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    .login-3d-box h2 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 15px #21c1d6cc;
+    }
+    .login-3d-box p {
+      color: #e1e1e1;
+      font-size: 1.08rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.7px;
+      text-shadow: 0 1px 6px #0d1a3b44;
+    }
+    .login-3d-box label {
+      text-align: left;
+      display: block;
+      color: #fafafa;
+      font-size: 1.02rem;
+      margin-bottom: 0.3rem;
+      margin-left: 0.1rem;
+      font-weight: 500;
+      filter: drop-shadow(0 1px 4px #21c1d6aa);
+    }
+    .login-3d-box input[type="text"],
+    .login-3d-box input[type="password"] {
+      width: 100%;
+      padding: 0.75rem 1.1rem;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.18);
+      color: #142d4c;
+      font-size: 1.04rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 3px 10px rgba(33,193,214,0.09), 0 0 0 5px rgba(33,193,214,0.05);
+      transition: background 0.2s, box-shadow 0.2s;
+      font-weight: 500;
+    }
+    .login-3d-box input:focus {
+      background: #fff;
+      box-shadow: 0 0 0 3px #21c1d6;
+      outline: none;
+    }
+    .login-3d-box button {
+      width: 100%;
+      background: linear-gradient(90deg,#21c1d6 0%, #3ba55b 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.85rem 0;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 16px rgba(33,193,214,0.16);
+      transition: background 0.19s, color 0.19s;
+      margin-bottom: 0.8rem;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 6px #0d1a3b66;
+    }
+    .login-3d-box button:hover {
+      background: linear-gradient(90deg,#3ba55b 0%, #21c1d6 100%);
+      color: #000;
+    }
+    .login-3d-box .forgot {
+      display: block;
+      text-align: right;
+      font-size: 1rem;
+      color: #21c1d6;
+      text-decoration: none;
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+      transition: color 0.17s;
+    }
+    .login-3d-box .forgot:hover {
+      text-decoration: underline;
+      color: #eebd3d;
+    }
+    @media (max-width: 500px) {
+      .login-3d-box {
+        width: 97vw;
+        padding: 1.1rem;
+      }
+      .login-3d-box h2 {
+        font-size: 1.15rem;
+      }
+      .brands img { width: 28px; height: 28px;}
+      .ball-3d { width: 48px; height: 48px;}
+    }
+  </style>
+</head>
+<body>
+  <form id="loginForm"class="login-3d-box" autocomplete="off">
+<div id="message" style="margin-top: 1rem;"></div>
+
+    <!-- Bóng đá 3D SVG (free use, có thể thay bằng ảnh PNG/SVG khác) -->
+    <img src="images/logo.png" alt="Football 3D" class="ball-3d"/>
+    <!-- Các hãng thể thao -->
+    <div class="brands">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas"/>
+      <img src="images/nike.svg" alt="Nike"/>
+      <img src="images/puma.svg" alt="Puma"/>
+    </div>
+    <h2>Quản lý đồ dùng cầu thủ</h2>
+    <p>Đăng nhập để quản lý giày, áo đấu và thiết bị từ các hãng nổi tiếng!</p>
+    <label for="username">Tên đăng nhập</label>
+    <input type="text" id="username" name="username" required autofocus>
+    <label for="password">Mật khẩu</label>
+    <input type="password" id="password" name="password" required>
+    <a href="email.html" class="forgot" style="color:black;">Quên mật khẩu?</a>
+    <button type="submit">Đăng nhập</button>
+  </form>
+<script>
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
+  const form = document.getElementById('loginForm');
+
+  // Enter hoặc mũi tên xuống từ ô username → sang ô password
+  usernameInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === "ArrowDown") {
+      e.preventDefault();
+      passwordInput.focus();
+    }
+  });
+
+  // Enter trong ô password → submit form
+  passwordInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      form.requestSubmit(); // submit chuẩn HTML5
+    }
+  });
+
+  // Xử lý khi submit form
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    try {
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        showToast(`⚽ Xin chào ${data.user?.username || username}! Đăng nhập thành công.`, 'success');
+        setTimeout(() => window.location.href = 'index.html', 1500);
+      } else {
+        showToast('❌ Tên đăng nhập hoặc mật khẩu sai!', 'error');
+      }
+    } catch (err) {
+      showToast('🚨 Lỗi khi kết nối tới server!', 'error');
+    }
+  });
+
+  // 🎨 Toast thông báo
+  function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.innerText = message;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.background = type === 'success' ? '#3ba55b' : '#e74c3c';
+    toast.style.color = '#fff';
+    toast.style.padding = '14px 22px';
+    toast.style.borderRadius = '12px';
+    toast.style.boxShadow = '0 6px 18px rgba(0,0,0,0.2)';
+    toast.style.fontWeight = '600';
+    toast.style.zIndex = 9999;
+    toast.style.fontFamily = 'Montserrat, sans-serif';
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 3000);
+  }
+</script>
+
+
+</body>
+
+</html>
