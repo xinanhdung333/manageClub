@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý cầu thủ đội bóng chuyên nghiệp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle at 40% 30%, #43cea2 0%, #185a9d 100%);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* Banner & sponsor style */
+    .banner {
+      width: 100vw;
+      height: 90px;
+      background: linear-gradient(90deg,#1a2980 60%,#26d0ce 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      box-shadow: 0 8px 24px #0003;
+    }
+    .sponsor {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .sponsor img {
+      height: 44px;
+      width: auto;
+      filter: drop-shadow(0 2px 8px #0005);
+      border-radius: 8px;
+      background: #fff;
+      padding: 4px;
+    }
+    .banner-text {
+      font-size: 2em;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-shadow: 1px 2px 8px #0006;
+    }
+
+    /* Decor text + icon bóng đá */
+    .decor-text {
+      position: absolute;
+      font-size: 2.5em;
+      opacity: 0.13;
+      pointer-events: none;
+      font-weight: bold;
+      letter-spacing: 5px;
+      animation: float 10s infinite linear alternate;
+      color: #ffffff;
+      text-shadow: 2px 2px 8px #185a9d;
+      z-index: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    @keyframes float {
+      0% {transform: translateY(0);}
+      100% {transform: translateY(45px);}
+    }
+    .soccer-ball {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      opacity: 0.17;
+      top: 110px;
+      right: 70px;
+      z-index: 0;
+      animation: spinball 8s infinite linear;
+    }
+    @keyframes spinball {
+      0% {transform: rotate(0deg);}
+      100% {transform: rotate(360deg);}
+    }
+    .container {
+      max-width: 1200px;
+      margin: 140px auto 60px auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      color: #fff;
+      text-shadow: 1px 2px 8px #0006;
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: 2px;
+    }
+    /* Search & filter */
+    .search-bar {
+      margin: 0 auto 30px auto;
+      background: #f1f8e9;
+      padding: 18px 22px;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #0001;
+      max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .search-bar input, .search-bar select {
+      padding: 8px 12px;
+      font-size: 1em;
+      border: 1.5px solid #185a9d;
+      border-radius: 7px;
+      outline: none;
+      min-width: 120px;
+      transition: border 0.2s;
+      background: #fff;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .search-bar input:focus, .search-bar select:focus {
+      border: 2px solid #26d0ce;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .card {
+      background: url('https://cdn.pixabay.com/photo/2017/03/12/13/41/soccer-2133296_1280.png') center/cover, linear-gradient(120deg,#f4f4f4 85%,#d2e7fa 100%);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.17), 0 2px 6px #2222;
+      width: 270px;
+      perspective: 1000px;
+      transition: transform 0.35s cubic-bezier(.25,.8,.25,1), box-shadow 0.35s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #43cea2;
+      min-height: 330px;
+    }
+    .card:hover {
+      transform: rotateY(10deg) scale(1.07);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.32), 0 4px 12px #2224;
+      z-index: 2;
+      border-color: #26d0ce;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      padding: 22px 20px 12px 20px;
+      border-bottom: 2px solid #e3e3e3;
+      background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .avatar {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #e3e3e3;
+      object-fit: cover;
+      margin-right: 15px;
+      box-shadow: 0 2px 8px #aaa;
+      border: 2.5px solid #fff;
+    }
+    .player-name {
+      font-size: 1.15em;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+    .player-family {
+      font-size: 0.99em;
+      color: #e0f2f1;
+      margin-bottom: 2px;
+      font-style: italic;
+      opacity: 0.92;
+    }
+    .card-body {
+      padding: 18px 24px 22px 24px;
+      font-size: 1.08em;
+      color: #444;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .info-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .info-icon {
+      width: 22px;
+      height: 22px;
+      margin-right: 9px;
+      opacity: 0.7;
+    }
+    .info-label {
+      font-weight: 500;
+      color: #185a9d;
+      margin-right: 6px;
+      min-width: 80px;
+    }
+    .position-label {
+      background: #26d0ce;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 6px 14px;
+      font-size: 1em;
+      display: inline-block;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px #43cea2aa;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    @media (max-width: 900px) {
+      .container {margin-top: 120px;}
+      .cards {flex-direction: column;align-items: center;}
+      .card {width: 90vw;}
+      .banner {height: 70px;}
+      .banner-text {font-size: 1.1em;}
+      .sponsor img {height: 32px;}
+      .soccer-ball {width: 55px;height:55px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Banner & sponsor -->
+  <div class="banner">
+    <div class="banner-text">CLB BÓNG ĐÁ - ĐỒNG HÀNH CÙNG TIẾT HỌC!</div>
+    <div class="sponsor">
+      <img src="https://upload.wikimedia.org/wikipedia/vi/6/6d/Logo_Viettel.png" alt="Viettel">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Vinamilk_logo.svg" alt="Vinamilk">
+      <img src="https://upload.wikimedia.org/wikipedia/vi/0/08/Logo_BIDV.svg" alt="BIDV">
+    </div>
+  </div>
+  <!-- Chữ trang trí + bóng -->
+  <img class="soccer-ball" src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Soccer ball" />
+  <div class="decor-text" style="top:120px; left:80px;">BÓNG ĐÁ</div>
+  <div class="decor-text" style="top:520px; left:60px;">FOOTBALL</div>
+  <div class="decor-text" style="top:180px; right:110px;">TEAM</div>
+  <div class="decor-text" style="top:480px; right:130px;">QUẢN LÝ</div>
+  <div class="decor-text" style="top:270px; left:350px; font-size:2em;">CẦU THỦ</div>
+  <div class="container">
+    <h2>Quản lý cầu thủ đội bóng</h2>
+    <!-- Search/filter bar -->
+    <div class="search-bar">
+      <input type="text" id="searchName" placeholder="Tìm tên hoặc họ">
+      <select id="positionFilter">
+        <option value="">Vị trí</option>
+        <option value="Thủ môn">Thủ môn</option>
+        <option value="Hậu vệ">Hậu vệ</option>
+        <option value="Tiền vệ">Tiền vệ</option>
+        <option value="Tiền đạo">Tiền đạo</option>
+      </select>
+      <select id="heightFilter">
+        <option value="">Chiều cao (cm)</option>
+        <option value="under170">Dưới 170</option>
+        <option value="170to180">170 - 180</option>
+        <option value="over180">Trên 180</option>
+      </select>
+      <select id="weightFilter">
+        <option value="">Cân nặng (kg)</option>
+        <option value="under60">Dưới 60</option>
+        <option value="60to75">60 - 75</option>
+        <option value="over75">Trên 75</option>
+      </select>
+      <button onclick="resetFilter()" style="background:#185a9d;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:1em;cursor:pointer;font-family:'Montserrat',Arial,sans-serif;">Xóa lọc</button>
+    </div>
+    <div class="cards" id="cards">
+      <!-- Cards sẽ được render ở đây -->
+    </div>
+  </div>
+  <script>
+    // Dữ liệu JSON mẫu, thêm trường family (Họ), position (Vị trí)
+    const players = [
+      {
+        family: "Nguyễn",
+        name: "Văn A",
+        position: "Thủ môn",
+        height: 182,
+        weight: 78,
+        joinDate: "2023-08-01",
+        avatar: "https://randomuser.me/api/portraits/men/11.jpg"
+      },
+      {
+        family: "Trần",
+        name: "Văn B",
+        position: "Hậu vệ",
+        height: 180,
+        weight: 75,
+        joinDate: "2022-07-15",
+        avatar: "https://randomuser.me/api/portraits/men/21.jpg"
+      },
+      {
+        family: "Lê",
+        name: "Thị C",
+        position: "Tiền vệ",
+        height: 168,
+        weight: 57,
+        joinDate: "2021-03-10",
+        avatar: "https://randomuser.me/api/portraits/women/31.jpg"
+      },
+      {
+        family: "Phạm",
+        name: "Quốc D",
+        position: "Tiền đạo",
+        height: 178,
+        weight: 70,
+        joinDate: "2021-10-10",
+        avatar: "https://randomuser.me/api/portraits/men/41.jpg"
+      },
+      {
+        family: "Hoàng",
+        name: "Minh E",
+        position: "Hậu vệ",
+        height: 169,
+        weight: 64,
+        joinDate: "2023-04-18",
+        avatar: "https://randomuser.me/api/portraits/men/45.jpg"
+      }
+    ];
+
+    const icons = {
+      height: "https://cdn-icons-png.flaticon.com/512/7338/7338703.png",
+      weight: "https://cdn-icons-png.flaticon.com/512/744/744922.png",
+      date: "https://cdn-icons-png.flaticon.com/512/747/747310.png",
+      position: "https://cdn-icons-png.flaticon.com/512/1163/1163661.png"
+    };
+
+    function createCard(player) {
+      return `
+        <div class="card">
+          <div class="card-header">
+            <img class="avatar" src="${player.avatar||icons.height}" alt="avatar">
+            <div>
+              <div class="player-family">${player.family}</div>
+              <div class="player-name">${player.name}</div>
+              <div class="position-label">
+                <img src="${icons.position}" alt="pos" style="width:22px;vertical-align:middle;margin-right:7px;">
+                ${player.position}
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="info-row">
+              <img class="info-icon" src="${icons.height}" alt="height">
+              <span class="info-label">Chiều cao:</span> ${player.height} cm
+            </div>
+            <div class="info-row">
+              <img class="info-icon" src="${icons.weight}" alt="weight">
+              <span class="info-label">Cân nặng:</span> ${player.weight} kg
+            </div>
+            <div class="info-row">
+              <img class="info-icon" src="${icons.date}" alt="date">
+              <span class="info-label">Gia nhập:</span> ${player.joinDate}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Search & filter logic
+    function filterPlayers() {
+      const searchText = document.getElementById('searchName').value.trim().toLowerCase();
+      const positionValue = document.getElementById('positionFilter').value;
+      const heightValue = document.getElementById('heightFilter').value;
+      const weightValue = document.getElementById('weightFilter').value;
+
+      let filtered = players.filter(p => {
+        // Search by name or family
+        const fullName = `${p.family} ${p.name}`.toLowerCase();
+        if (searchText && !fullName.includes(searchText)) return false;
+
+        // Filter by position
+        if (positionValue && p.position !== positionValue) return false;
+
+        // Filter by height
+        if (heightValue === 'under170' && p.height >= 170) return false;
+        if (heightValue === '170to180' && (p.height < 170 || p.height > 180)) return false;
+        if (heightValue === 'over180' && p.height <= 180) return false;
+
+        // Filter by weight
+        if (weightValue === 'under60' && p.weight >= 60) return false;
+        if (weightValue === '60to75' && (p.weight < 60 || p.weight > 75)) return false;
+        if (weightValue === 'over75' && p.weight <= 75) return false;
+
+        return true;
+      });
+      renderCards(filtered);
+    }
+
+    function renderCards(arr) {
+      const cardsDiv = document.getElementById("cards");
+      if (arr.length === 0) {
+        cardsDiv.innerHTML = '<div style="text-align:center;color:#185a9d;font-size:1.25em;padding:40px;font-family:\'Montserrat\',Arial;">Không tìm thấy cầu thủ phù hợp!</div>';
+      } else {
+        cardsDiv.innerHTML = arr.map(createCard).join('');
+      }
+    }
+
+    function resetFilter() {
+      document.getElementById('searchName').value = '';
+      document.getElementById('positionFilter').value = '';
+      document.getElementById('heightFilter').value = '';
+      document.getElementById('weightFilter').value = '';
+      renderCards(players);
+    }
+
+    document.getElementById('searchName').addEventListener('input', filterPlayers);
+    document.getElementById('positionFilter').addEventListener('change', filterPlayers);
+    document.getElementById('heightFilter').addEventListener('change', filterPlayers);
+    document.getElementById('weightFilter').addEventListener('change', filterPlayers);
+
+    // Init
+    renderCards(players);
+  </script>
+</body>
+</html>
