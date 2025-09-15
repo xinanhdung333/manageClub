@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Webcrumbs Plugin</title>
+        <style>
+            @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+            @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+
+            *,
+            :after,
+            :before {
+                --tw-border-spacing-x: 0;
+                --tw-border-spacing-y: 0;
+                --tw-translate-x: 0;
+                --tw-translate-y: 0;
+                --tw-rotate: 0;
+                --tw-skew-x: 0;
+                --tw-skew-y: 0;
+                --tw-scale-x: 1;
+                --tw-scale-y: 1;
+                --tw-pan-x: ;
+                --tw-pan-y: ;
+                --tw-pinch-zoom: ;
+                --tw-scroll-snap-strictness: proximity;
+                --tw-gradient-from-position: ;
+                --tw-gradient-via-position: ;
+                --tw-gradient-to-position: ;
+                --tw-ordinal: ;
+                --tw-slashed-zero: ;
+                --tw-numeric-figure: ;
+                --tw-numeric-spacing: ;
+                --tw-numeric-fraction: ;
+                --tw-ring-inset: ;
+                --tw-ring-offset-width: 0px;
+                --tw-ring-offset-color: #fff;
+                --tw-ring-color: rgba(59, 130, 246, 0.5);
+                --tw-ring-offset-shadow: 0 0 #0000;
+                --tw-ring-shadow: 0 0 #0000;
+                --tw-shadow: 0 0 #0000;
+                --tw-shadow-colored: 0 0 #0000;
+                --tw-blur: ;
+                --tw-brightness: ;
+                --tw-contrast: ;
+                --tw-grayscale: ;
+                --tw-hue-rotate: ;
+                --tw-invert: ;
+                --tw-saturate: ;
+                --tw-sepia: ;
+                --tw-drop-shadow: ;
+                --tw-backdrop-blur: ;
+                --tw-backdrop-brightness: ;
+                --tw-backdrop-contrast: ;
+                --tw-backdrop-grayscale: ;
+                --tw-backdrop-hue-rotate: ;
+                --tw-backdrop-invert: ;
+                --tw-backdrop-opacity: ;
+                --tw-backdrop-saturate: ;
+                --tw-backdrop-sepia: ;
+                --tw-contain-size: ;
+                --tw-contain-layout: ;
+                --tw-contain-paint: ;
+                --tw-contain-style: ;
+            }
+            ::backdrop {
+                --tw-border-spacing-x: 0;
+                --tw-border-spacing-y: 0;
+                --tw-translate-x: 0;
+                --tw-translate-y: 0;
+                --tw-rotate: 0;
+                --tw-skew-x: 0;
+                --tw-skew-y: 0;
+                --tw-scale-x: 1;
+                --tw-scale-y: 1;
+                --tw-pan-x: ;
+                --tw-pan-y: ;
+                --tw-pinch-zoom: ;
+                --tw-scroll-snap-strictness: proximity;
+                --tw-gradient-from-position: ;
+                --tw-gradient-via-position: ;
+                --tw-gradient-to-position: ;
+                --tw-ordinal: ;
+                --tw-slashed-zero: ;
+                --tw-numeric-figure: ;
+                --tw-numeric-spacing: ;
+                --tw-numeric-fraction: ;
+                --tw-ring-inset: ;
+                --tw-ring-offset-width: 0px;
+                --tw-ring-offset-color: #fff;
+                --tw-ring-color: rgba(59, 130, 246, 0.5);
+                --tw-ring-offset-shadow: 0 0 #0000;
+                --tw-ring-shadow: 0 0 #0000;
+                --tw-shadow: 0 0 #0000;
+                --tw-shadow-colored: 0 0 #0000;
+                --tw-blur: ;
+                --tw-brightness: ;
+                --tw-contrast: ;
+                --tw-grayscale: ;
+                --tw-hue-rotate: ;
+                --tw-invert: ;
+                --tw-saturate: ;
+                --tw-sepia: ;
+                --tw-drop-shadow: ;
+                --tw-backdrop-blur: ;
+                --tw-backdrop-brightness: ;
+                --tw-backdrop-contrast: ;
+                --tw-backdrop-grayscale: ;
+                --tw-backdrop-hue-rotate: ;
+                --tw-backdrop-invert: ;
+                --tw-backdrop-opacity: ;
+                --tw-backdrop-saturate: ;
+                --tw-backdrop-sepia: ;
+                --tw-contain-size: ;
+                --tw-contain-layout: ;
+                --tw-contain-paint: ;
+                --tw-contain-style: ;
+            } /*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/
+            *,
+            :after,
+            :before {
+                border: 0 solid #e5e7eb;
+                box-sizing: border-box;
+            }
+            :after,
+            :before {
+                --tw-content: "";
+            }
+            :host,
+            html {
+                line-height: 1.5;
+                -webkit-text-size-adjust: 100%;
+                font-family:
+                    Open Sans,
+                    ui-sans-serif,
+                    system-ui,
+                    sans-serif,
+                    Apple Color Emoji,
+                    Segoe UI Emoji,
+                    Segoe UI Symbol,
+                    Noto Color Emoji;
+                font-feature-settings: normal;
+                font-variation-settings: normal;
+                -moz-tab-size: 4;
+                tab-size: 4;
+                -webkit-tap-highlight-color: transparent;
+            }
+            body {
+                line-height: inherit;
+                margin: 0;
+            }
+            hr {
+                border-top-width: 1px;
+                color: inherit;
+                height: 0;
+            }
+            abbr:where([title]) {
+                text-decoration: underline dotted;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-size: inherit;
+                font-weight: inherit;
+            }
+            a {
+                color: inherit;
+                text-decoration: inherit;
+            }
+            b,
+            strong {
+                font-weight: bolder;
+            }
+            code,
+            kbd,
+            pre,
+            samp {
+                font-family:
+                    ui-monospace,
+                    SFMono-Regular,
+                    Menlo,
+                    Monaco,
+                    Consolas,
+                    Liberation Mono,
+                    Courier New,
+                    monospace;
+                font-feature-settings: normal;
+                font-size: 1em;
+                font-variation-settings: normal;
+            }
+            small {
+                font-size: 80%;
+            }
+            sub,
+            sup {
+                font-size: 75%;
+                line-height: 0;
+                position: relative;
+                vertical-align: baseline;
+            }
+            sub {
+                bottom: -0.25em;
+            }
+            sup {
+                top: -0.5em;
+            }
+            table {
+                border-collapse: collapse;
+                border-color: inherit;
+                text-indent: 0;
+            }
+            button,
+            input,
+            optgroup,
+            select,
+            textarea {
+                color: inherit;
+                font-family: inherit;
+                font-feature-settings: inherit;
+                font-size: 100%;
+                font-variation-settings: inherit;
+                font-weight: inherit;
+                letter-spacing: inherit;
+                line-height: inherit;
+                margin: 0;
+                padding: 0;
+            }
+            button,
+            select {
+                text-transform: none;
+            }
+            button,
+            input:where([type="button"]),
+            input:where([type="reset"]),
+            input:where([type="submit"]) {
+                -webkit-appearance: button;
+                background-color: transparent;
+                background-image: none;
+            }
+            :-moz-focusring {
+                outline: auto;
+            }
+            :-moz-ui-invalid {
+                box-shadow: none;
+            }
+            progress {
+                vertical-align: baseline;
+            }
+            ::-webkit-inner-spin-button,
+            ::-webkit-outer-spin-button {
+                height: auto;
+            }
+            [type="search"] {
+                -webkit-appearance: textfield;
+                outline-offset: -2px;
+            }
+            ::-webkit-search-decoration {
+                -webkit-appearance: none;
+            }
+            ::-webkit-file-upload-button {
+                -webkit-appearance: button;
+                font: inherit;
+            }
+            summary {
+                display: list-item;
+            }
+            blockquote,
+            dd,
+            dl,
+            figure,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            hr,
+            p,
+            pre {
+                margin: 0;
+            }
+            fieldset {
+                margin: 0;
+            }
+            fieldset,
+            legend {
+                padding: 0;
+            }
+            menu,
+            ol,
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            dialog {
+                padding: 0;
+            }
+            textarea {
+                resize: vertical;
+            }
+            input::placeholder,
+            textarea::placeholder {
+                color: #9ca3af;
+                opacity: 1;
+            }
+            [role="button"],
+            button {
+                cursor: pointer;
+            }
+            :disabled {
+                cursor: default;
+            }
+            audio,
+            canvas,
+            embed,
+            iframe,
+            img,
+            object,
+            svg,
+            video {
+                display: block;
+                vertical-align: middle;
+            }
+            img,
+            video {
+                height: auto;
+                max-width: 100%;
+            }
+            [hidden]:where(:not([hidden="until-found"])) {
+                display: none;
+            }
+            #webcrumbs .absolute {
+                position: absolute;
+            }
+            #webcrumbs .relative {
+                position: relative;
+            }
+            #webcrumbs .right-0 {
+                right: 0;
+            }
+            #webcrumbs .right-3 {
+                right: 12px;
+            }
+            #webcrumbs .top-3 {
+                top: 12px;
+            }
+            #webcrumbs .top-\[-3px\] {
+                top: -3px;
+            }
+            #webcrumbs .col-span-5 {
+                grid-column: span 5 / span 5;
+            }
+            #webcrumbs .col-span-7 {
+                grid-column: span 7 / span 7;
+            }
+            #webcrumbs .mx-4 {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+            #webcrumbs .ml-2 {
+                margin-left: 8px;
+            }
+            #webcrumbs .mr-1 {
+                margin-right: 4px;
+            }
+            #webcrumbs .mr-2 {
+                margin-right: 8px;
+            }
+            #webcrumbs .mt-1 {
+                margin-top: 4px;
+            }
+            #webcrumbs .mt-4 {
+                margin-top: 16px;
+            }
+            #webcrumbs .mt-6 {
+                margin-top: 24px;
+            }
+            #webcrumbs .mt-8 {
+                margin-top: 32px;
+            }
+            #webcrumbs .flex {
+                display: flex;
+            }
+            #webcrumbs .grid {
+                display: grid;
+            }
+            #webcrumbs .h-1 {
+                height: 4px;
+            }
+            #webcrumbs .h-16 {
+                height: 64px;
+            }
+            #webcrumbs .h-2 {
+                height: 8px;
+            }
+            #webcrumbs .h-3 {
+                height: 12px;
+            }
+            #webcrumbs .h-4 {
+                height: 16px;
+            }
+            #webcrumbs .h-8 {
+                height: 32px;
+            }
+            #webcrumbs .h-full {
+                height: 100%;
+            }
+            #webcrumbs .w-16 {
+                width: 64px;
+            }
+            #webcrumbs .w-2 {
+                width: 8px;
+            }
+            #webcrumbs .w-3 {
+                width: 12px;
+            }
+            #webcrumbs .w-5 {
+                width: 20px;
+            }
+            #webcrumbs .w-8 {
+                width: 32px;
+            }
+            #webcrumbs .w-full {
+                width: 100%;
+            }
+            #webcrumbs .flex-1 {
+                flex: 1 1 0%;
+            }
+            #webcrumbs .grid-cols-12 {
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+            }
+            #webcrumbs .grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            #webcrumbs .flex-row {
+                flex-direction: row;
+            }
+            #webcrumbs .items-center {
+                align-items: center;
+            }
+            #webcrumbs .justify-between {
+                justify-content: space-between;
+            }
+            #webcrumbs .gap-4 {
+                gap: 16px;
+            }
+            #webcrumbs :is(.-space-x-2 > :not([hidden]) ~ :not([hidden])) {
+                --tw-space-x-reverse: 0;
+                margin-left: calc(-8px * (1 - var(--tw-space-x-reverse)));
+                margin-right: calc(-8px * var(--tw-space-x-reverse));
+            }
+            #webcrumbs :is(.space-x-4 > :not([hidden]) ~ :not([hidden])) {
+                --tw-space-x-reverse: 0;
+                margin-left: calc(16px * (1 - var(--tw-space-x-reverse)));
+                margin-right: calc(16px * var(--tw-space-x-reverse));
+            }
+            #webcrumbs .rounded {
+                border-radius: 12px;
+            }
+            #webcrumbs .rounded-full {
+                border-radius: 9999px;
+            }
+            #webcrumbs .rounded-lg {
+                border-radius: 24px;
+            }
+            #webcrumbs .border-2 {
+                border-width: 2px;
+            }
+            #webcrumbs .border-l {
+                border-left-width: 1px;
+            }
+            #webcrumbs .border-gray-500 {
+                --tw-border-opacity: 1;
+                border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+            }
+            #webcrumbs .border-white {
+                --tw-border-opacity: 1;
+                border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+            }
+            #webcrumbs .bg-black {
+                --tw-bg-opacity: 1;
+                background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-blue-500 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-blue-600 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-gray-100 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-gray-50 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-green-500 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-red-500 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-red-600 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-yellow-400 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1));
+            }
+            #webcrumbs .bg-gradient-to-r {
+                background-image: linear-gradient(to right, var(--tw-gradient-stops));
+            }
+            #webcrumbs .from-blue-900 {
+                --tw-gradient-from: #1e3a8a var(--tw-gradient-from-position);
+                --tw-gradient-to: rgba(30, 58, 138, 0) var(--tw-gradient-to-position);
+                --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+            }
+            #webcrumbs .to-indigo-700 {
+                --tw-gradient-to: #4338ca var(--tw-gradient-to-position);
+            }
+            #webcrumbs .p-4 {
+                padding: 16px;
+            }
+            #webcrumbs .px-4 {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            #webcrumbs .px-6 {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            #webcrumbs .py-1 {
+                padding-bottom: 4px;
+                padding-top: 4px;
+            }
+            #webcrumbs .py-2 {
+                padding-bottom: 8px;
+                padding-top: 8px;
+            }
+            #webcrumbs .text-3xl {
+                font-size: 30px;
+                line-height: 36px;
+            }
+            #webcrumbs .text-sm {
+                font-size: 14px;
+                line-height: 21px;
+            }
+            #webcrumbs .text-xl {
+                font-size: 20px;
+                line-height: 28px;
+            }
+            #webcrumbs .text-xs {
+                font-size: 12px;
+                line-height: 19.200000000000003px;
+            }
+            #webcrumbs .font-bold {
+                font-weight: 700;
+            }
+            #webcrumbs .font-semibold {
+                font-weight: 600;
+            }
+            #webcrumbs .text-gray-400 {
+                --tw-text-opacity: 1;
+                color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+            }
+            #webcrumbs .text-gray-500 {
+                --tw-text-opacity: 1;
+                color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+            }
+            #webcrumbs .text-gray-600 {
+                --tw-text-opacity: 1;
+                color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+            }
+            #webcrumbs .text-gray-800 {
+                --tw-text-opacity: 1;
+                color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+            }
+            #webcrumbs .text-white {
+                --tw-text-opacity: 1;
+                color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+            }
+            #webcrumbs .transition {
+                transition-duration: 0.15s;
+                transition-property:
+                    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+                    transform, filter, backdrop-filter;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            #webcrumbs {
+                font-family: Open Sans !important;
+                font-size: 16px !important;
+            }
+            #webcrumbs .hover\:bg-blue-700:hover {
+                --tw-bg-opacity: 1;
+                background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+            }
+        </style>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="https://cdn.webcrumbs.org/assets/images/landing/favicon.ico" />
+        <link
+            rel="apple-touch-icon"
+            sizes="192x192"
+            href="https://cdn.webcrumbs.org/assets/images/landing/logo192.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="512x512"
+            href="https://cdn.webcrumbs.org/assets/images/landing/logo512.png"
+        />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Webcrumbs" />
+    </head>
+    <body>
+        <div id="webcrumbs">
+            <div class="grid grid-cols-12 h-full">
+                <div class="col-span-5 bg-gradient-to-r from-blue-900 to-indigo-700 h-full relative">
+                    <div class="flex items-center space-x-4 p-4">
+                        <div class="flex items-center text-white">
+                            <div class="w-3 h-3 bg-red-500 rounded-full mr-1"></div>
+                            <span class="text-xs font-bold">LIVE</span>
+                        </div>
+                        <div class="border-l border-gray-500 h-4"></div>
+                        <div class="text-white text-xs font-bold">TRANSFER NEWS</div>
+                    </div>
+<img src ="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTC-ukVOuCDegyHZ9Evqyi4dnX6FT_5Ajzv7JkKP6f89P4h9tN5_XMurT7odWLa2COkgV_HLtkXyDPFFh6Qh3ppehQdE1RBse7vKvGa2oyc3Je28Dhqu7CP71kvRND_iRvS1060Qrzw8Nj7">
+
+                    <div class="absolute top-3 right-3">
+                        <div class="bg-green-500 text-white text-xs font-bold px-4 py-1 rounded-full">OFFICIAL</div>
+                    </div>
+                </div>
+                <div class="col-span-7 bg-gray-100 p-4">
+                    <div class="absolute top-3 right-3 text-xs text-gray-400 font-semibold">JUST ANNOUNCED</div>
+                    <div class="flex justify-between items-center mt-4">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg"
+                            alt="Manchester City"
+                            class="w-16 h-16"
+                            keywords="manchester city, football club, logo"
+                        />
+                        <div class="flex-1 mx-4 relative">
+                            <div class="h-1 bg-blue-500 w-full rounded-full"></div>
+                            <div
+                                class="absolute right-0 top-[-3px] w-2 h-2 rounded-full bg-blue-500 border-2 border-white"
+                            ></div>
+                        </div>
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/sco/5/56/Real_Madrid_CF.svg"
+                            alt="Liverpool"
+                            class="w-16 h-16"
+                            keywords="liverpool, football club, logo"
+                        />
+                    </div>
+                    <div class="flex justify-between text-gray-500 text-sm mt-1">
+                        <div>FROM</div>
+                        <div>TO</div>
+                    </div>
+                    <div class="mt-8">
+                        <h1 class="text-3xl font-bold text-gray-800">Trent Alexander-Arnold
+</h1>
+                        <div class="flex items-center mt-1">
+                            <div class="flex mr-2">
+                                <div><img src=""></div>
+                            </div>
+                        </div> <b>England <b><img style="height:80px;width:60px" src="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-Tuyen-Anh.png"></pre>
+                   </div>                            
+
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-gray-500 text-sm">Transfer Fee</div>
+                            <div class="font-bold text-xl">£75 Million</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-gray-500 text-sm">Contract Length</div>
+                            <div class="font-bold text-xl">3 Years</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-gray-500 text-sm">Weekly Salary</div>
+                            <div class="font-bold text-xl">£350,000</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-gray-500 text-sm">Age</div>
+                            <div class="font-bold text-xl">25</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-6">
+                        In a shocking move that has stunned the football world, Alexander-Arnold
+ completes his transfer
+                        from Liverpool to Real Madrid. The Belgian playmaker brings his exceptional passing range
+                        and vision to Anfield after eight trophy-laden seasons at the Etihad.
+                    </p>
+                    <div class="flex justify-between items-center mt-6">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
+                                <img
+                                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3MzkyNDZ8MHwxfHNlYXJjaHwxfHx1c2VyfGVufDB8fHx8MTc1NzgyMzQzNnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080"
+                                    alt="User"
+                                    class="w-8 h-8 rounded-full border-2 border-white"
+                                    keywords="user, avatar, profile"
+                                />
+                                <img
+                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3MzkyNDZ8MHwxfHNlYXJjaHwyfHx1c2VyfGVufDB8fHx8MTc1NzgyMzQzNnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080"
+                                    alt="User"
+                                    class="w-8 h-8 rounded-full border-2 border-white"
+                                    keywords="user, avatar, profile"
+                                />
+                                <img
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3MzkyNDZ8MHwxfHNlYXJjaHwzfHx1c2VyfGVufDB8fHx8MTc1NzgyMzQzNnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080"
+                                    alt="User"
+                                    class="w-8 h-8 rounded-full border-2 border-white"
+                                    keywords="user, avatar, profile"
+                                />
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">+24K fans discussing</span>
+                        </div>
+                        <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded hover:bg-blue-700 transition">
+                            Full Story
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
