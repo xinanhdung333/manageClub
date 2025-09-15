@@ -1,12 +1,9 @@
 <!DOCTYPE HTML>
-<!--
-	Alpha by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Alpha by HTML5 UP</title>
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+		<title>Taphd</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -16,18 +13,82 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1><a href="index.html">Alpha</a> by HTML5 UP</h1>
+					<h1><a href="index.html">ManageClub</a> by Taphd</h1> <br><div class="switch-wrapper-sun-moon">
+  <label class="switch-sun-moon" for="switch-sun-moon">
+    <input type="checkbox" id="switch-sun-moon">
+    <span class="slider-sun-moon"></span>
+  </label>
+</div>
+
+<style>
+.switch-wrapper-sun-moon input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+}
+
+.switch-wrapper-sun-moon *,
+.switch-wrapper-sun-moon ::after,
+.switch-wrapper-sun-moon ::before {
+  box-sizing: border-box;
+}
+
+.switch-wrapper-sun-moon .switch-sun-moon {
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  --size-of-icon: 1.4em;
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+  display: inline-block;
+}
+
+.switch-wrapper-sun-moon .slider-sun-moon {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.switch-wrapper-sun-moon .slider-sun-moon:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon,1.4em);
+  width: var(--size-of-icon,1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset,0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg,#256176,#31819d 70%);
+  transition: .4s;
+}
+
+.switch-wrapper-sun-moon input:checked + .slider-sun-moon {
+  background-color: #303136;
+}
+
+.switch-wrapper-sun-moon input:checked + .slider-sun-moon:before {
+  left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+  background: #303136;
+  box-shadow: inset -3px -2px 5px -2px #0aa696, inset -10px -4px 0 0 #0dd6c1;
+}
+</style>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
+<li><a href="index.html">Home</a></li>
 							<li>
 								<a href="#" class="icon solid fa-angle-down">Layouts</a>
 								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
+									<li><a href="generic.html">Chức năng</a></li>
+									
+									<li><a href="elements.html">Dự án</a></li>
 									<li>
-										<a href="#">Submenu</a>
+										<a href="#">Dịch vụ</a>
 										<ul>
 											<li><a href="#">Option One</a></li>
 											<li><a href="#">Option Two</a></li>
@@ -36,8 +97,11 @@
 										</ul>
 									</li>
 								</ul>
+<li><a href="contact.html">Liên hệ</a></li>
 							</li>
-							<li><a href="signin.html" class="button">Sign Up</a></li>
+<li><a href="generic.html">Giới thiệu</a></li>
+
+							<li><a href="signin.html" class="button">Đăng nhập</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -63,7 +127,7 @@
 							<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
 							adipiscing nunc adipiscing. Condimentum turpis massa.</p>
 						</header>
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<span class="image featured"><img src="images/200.webp" alt="" /></span>
 					</section>
 
 					<section class="box special features">
